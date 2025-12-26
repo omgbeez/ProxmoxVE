@@ -27,7 +27,7 @@ function update_script() {
     msg_error "No ${APP} Installation Found!"
     exit
   fi
-  if check_for_gh_release "rdt-client" "rogerfar/rdt-client"; then
+  if check_for_gh_release "rdt-client" "omgbeez/rdt-client"; then
     msg_info "Stopping Service"
     systemctl stop rdtc
     msg_ok "Stopped Service"
@@ -37,7 +37,7 @@ function update_script() {
     cp -R /opt/rdtc/appsettings.json /opt/rdtc-backup/
     msg_ok "Backup created"
 
-    fetch_and_deploy_gh_release "rdt-client" "rogerfar/rdt-client" "prebuild" "latest" "/opt/rdtc" "RealDebridClient.zip"
+    fetch_and_deploy_gh_release "rdt-client" "omgbeez/rdt-client" "prebuild" "latest" "/opt/rdtc" "RealDebridClient.zip"
     cp -R /opt/rdtc-backup/appsettings.json /opt/rdtc/
     if dpkg-query -W dotnet-sdk-8.0 >/dev/null 2>&1; then
       $STD apt remove --purge -y dotnet-sdk-8.0
